@@ -11,6 +11,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -45,7 +46,7 @@ class PriceServiceTest {
         var dto    = PriceResponse.builder().price(35.5).build();
 
         when(repo.findApplicablePrice(1,35455,req.getApplicationDate()))
-                .thenReturn(Optional.of(entity));
+                .thenReturn(List.of(entity));
         when(mapper.toResponseDTO(entity)).thenReturn(dto);
 
         var res = service.getApplicablePrice(req);
@@ -54,7 +55,7 @@ class PriceServiceTest {
 
     @Test void whenNotFound_thenException() {
         var req = new PriceRequest(1,35455, LocalDateTime.now());
-        when(repo.findApplicablePrice(any(),any(),any())).thenReturn(Optional.empty());
+        when(repo.findApplicablePrice(any(),any(),any())).thenReturn(List.of());
         assertThatThrownBy(() -> service.getApplicablePrice(req))
                 .isInstanceOf(NoSuchElementException.class);
     }
