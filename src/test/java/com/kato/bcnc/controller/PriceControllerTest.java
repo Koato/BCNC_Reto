@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.kato.bcnc.dto.PriceRequest;
 import com.kato.bcnc.dto.PriceResponse;
-import com.kato.bcnc.service.PriceService;
 import com.kato.bcnc.service.impl.PriceServiceImpl;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
