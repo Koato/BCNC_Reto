@@ -3,8 +3,10 @@ package com.kato.bcnc.service;
 import com.kato.bcnc.domain.Price;
 import com.kato.bcnc.dto.PriceRequest;
 import com.kato.bcnc.dto.PriceResponse;
+import com.kato.bcnc.exception.PriceNotFoundException;
 import com.kato.bcnc.mapper.PriceMapper;
 import com.kato.bcnc.repository.PriceRepository;
+import com.kato.bcnc.service.impl.PriceServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -12,7 +14,6 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.NoSuchElementException;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
@@ -27,7 +28,7 @@ class PriceServiceTest {
     PriceMapper mapper;
 
     @InjectMocks
-    PriceService service;
+    PriceServiceImpl service;
 
     @BeforeEach
     void setup() {
@@ -56,6 +57,6 @@ class PriceServiceTest {
         var req = new PriceRequest(1,35455, LocalDateTime.now());
         when(repo.findApplicablePrice(any(),any(),any())).thenReturn(List.of());
         assertThatThrownBy(() -> service.getApplicablePrice(req))
-                .isInstanceOf(NoSuchElementException.class);
+                .isInstanceOf(PriceNotFoundException.class);
     }
 }
