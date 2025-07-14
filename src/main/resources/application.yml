@@ -20,9 +20,12 @@ spring:
 
 server:
   port: 8080
+  error:
+    include-stacktrace: never
+    include-message: always
 
-#kafka:
-#  bootstrap-servers: localhost:9092
-#  consumer:
-#    group-id: price-group
-#    auto-offset-reset: earliest
+kafka:
+  bootstrap-servers: localhost:9092
+  consumer:
+    group-id: price-group
+    auto-offset-reset: earliest

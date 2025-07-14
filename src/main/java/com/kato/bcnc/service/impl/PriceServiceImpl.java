@@ -3,13 +3,13 @@ package com.kato.bcnc.service.impl;
 import com.kato.bcnc.domain.Price;
 import com.kato.bcnc.dto.PriceRequest;
 import com.kato.bcnc.dto.PriceResponse;
+import com.kato.bcnc.exception.PriceNotFoundException;
 import com.kato.bcnc.mapper.PriceMapper;
 import com.kato.bcnc.repository.PriceRepository;
 import com.kato.bcnc.service.PriceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @Service
 @RequiredArgsConstructor
@@ -22,7 +22,10 @@ public class PriceServiceImpl implements PriceService {
     public PriceResponse getApplicablePrice(PriceRequest request) {
         List<Price> matches =  repository.findApplicablePrice(request.getBrandId(), request.getProductId(), request.getApplicationDate());
         if (matches.isEmpty()) {
-            throw new NoSuchElementException("No price found");
+            throw new PriceNotFoundException(
+                String.format("No applicable price found for brandId: %d, productId: %d, applicationDate: %s",
+                    request.getBrandId(), request.getProductId(), request.getApplicationDate())
+            );
         }
         Price best = matches.getFirst();
         return mapper.toResponseDTO(best);

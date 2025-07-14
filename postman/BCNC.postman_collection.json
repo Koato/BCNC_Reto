@@ -319,6 +319,112 @@
 					],
 					"cookie": [],
 					"body": "{\n    \"productId\": 35455,\n    \"brandId\": 1,\n    \"priceList\": 4,\n    \"startDate\": \"2020-06-15T16:00:00\",\n    \"endDate\": \"2020-12-31T23:59:59\",\n    \"price\": 38.95\n}"
+				},
+				{
+					"name": "Error",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"brandId\": 1,\n  \"applicationDate\": \"2020-06-16T21:00:00\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/prices/search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"prices",
+								"search"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 14 Jul 2025 22:06:37 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"timestamp\": \"2025-07-14T22:06:37.478+00:00\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"Validation failed for object='priceRequest'. Error count: 1\",\n    \"errors\": [\n        {\n            \"cause\": {\n                \"objectName\": \"priceRequest\",\n                \"field\": \"productId\",\n                \"rejectedValue\": null,\n                \"codes\": [\n                    \"NotNull.priceRequest.productId\",\n                    \"NotNull.productId\",\n                    \"NotNull.java.lang.Integer\",\n                    \"NotNull\"\n                ],\n                \"arguments\": [\n                    {\n                        \"codes\": [\n                            \"priceRequest.productId\",\n                            \"productId\"\n                        ],\n                        \"arguments\": null,\n                        \"defaultMessage\": \"productId\",\n                        \"code\": \"productId\"\n                    }\n                ],\n                \"defaultMessage\": \"productId es obligatorio\",\n                \"bindingFailure\": false,\n                \"code\": \"NotNull\"\n            },\n            \"arguments\": [\n                {\n                    \"codes\": [\n                        \"priceRequest.productId\",\n                        \"productId\"\n                    ],\n                    \"arguments\": null,\n                    \"defaultMessage\": \"productId\",\n                    \"code\": \"productId\"\n                }\n            ],\n            \"defaultMessage\": \"productId es obligatorio\",\n            \"codes\": [\n                \"NotNull.priceRequest.productId\",\n                \"NotNull.productId\",\n                \"NotNull.java.lang.Integer\",\n                \"NotNull\"\n            ]\n        }\n    ],\n    \"path\": \"/api/v1/prices/search\"\n}"
+				},
+				{
+					"name": "Exception",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"brandId\": 5,\n  \"productId\": 35455,\n  \"applicationDate\": \"2020-06-16T21:00:00\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/prices/search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"prices",
+								"search"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 14 Jul 2025 22:07:08 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": null
 				}
 			]
 		}

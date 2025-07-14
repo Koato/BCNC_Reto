@@ -18,7 +18,18 @@
         <license/>
     </licenses>
     <developers>
-        <developer/>
+        <developer>
+            <id>kato</id>
+            <name>kato</name>
+            <email>speeds21@outlook.com</email>
+            <roles>
+                <role>architect</role>
+                <role>developer</role>
+                <role>scrum</role>
+            </roles>
+            <organization>Inditex</organization>
+            <organizationUrl>https://www.inditex.com</organizationUrl>
+        </developer>
     </developers>
     <scm>
         <connection/>
@@ -141,7 +152,7 @@
             <plugin>
                 <groupId>org.sonarsource.scanner.maven</groupId>
                 <artifactId>sonar-maven-plugin</artifactId>
-<!--                <version>4.0.0.4121</version>-->
+                <version>5.1.0.4751</version>
             </plugin>
         </plugins>
     </build>
