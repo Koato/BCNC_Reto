@@ -6,6 +6,7 @@ import com.kato.bcnc.exception.PriceNotFoundException;
 import com.kato.bcnc.service.PriceService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.mapstruct.ap.shaded.freemarker.log.Logger;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 @Validated
 public class PriceController {
 
+    Logger logger = Logger.getLogger(getClass().getName());
+
     private final PriceService service;
 
     /**
@@ -29,7 +32,7 @@ public class PriceController {
         try {
             return ResponseEntity.ok(service.getApplicablePrice(request));
         } catch (PriceNotFoundException e) {
-            System.err.println("PriceNotFoundException: " + e.getMessage());
+            logger.error("PriceNotFoundException: " + e.getMessage());
             return ResponseEntity.notFound().build();
         }
     }
