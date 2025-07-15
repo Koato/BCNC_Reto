@@ -1,0 +1,81 @@
+openapi: 3.0.4
+info:
+  title: "BNCN API"
+  description: "BNCN API for Inditex"
+  contact:
+    email: speed21@outlook.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+  - url: localhost:8080/api/v1
+tags:
+  - name: inditex
+    description: Petición para obtener el precio
+paths:
+  /search:
+    post:
+      tags:
+        - inditex
+      summary: Obtener el precio según mayor prioridad
+      description: Obtener el precio según mayor prioridad
+      operationId: findPrice
+      requestBody:
+        description: Obtener el precio según mayor prioridad
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PriceIn'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Price'
+        '400':
+          description: Invalid input
+        '404':
+          description: Price not found
+components:
+  schemas:
+    Price:
+      type: object
+      properties:
+        brandId:
+          type: integer
+          format: int64
+          example: 1
+        startDate:
+          type: string
+          example: '2020-06-14T00:00:00'
+        endDate:
+          type: string
+          example: '2020-12-31T23:59:59'
+        priceList:
+          type: integer
+          format: int64
+          example: 1
+        productId:
+          type: integer
+          format: int64
+          example: 35455
+    PriceIn:
+      required:
+        - brandId
+        - productId
+        - applicationDate
+      type: object
+      properties:
+        brandId:
+          type: integer
+          format: int64
+          example: 1
+        productId:
+          type: integer
+          format: int64
+          example: 35455
+        applicationDate:
+          type: string
+          example: '2020-06-14T00:00:00'
